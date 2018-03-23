@@ -1,5 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Work+Sans');
+
+.container > div {
+  display: grid;
+  align-items: center;
+  font-size: 1em;
+  font-family: 'IBM Plex Sans', sans-serif;
+  padding: 10px;
+}
+
+html, body {
+  background-color: #f0f3f7;
+  margin: 10px;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, auto);
+}
+
+.navbar {
+  grid-column: 1 / -1;
+  background: #FFFFFF;
+  align-items: center;
+  border-bottom: 2px solid hsl(214, 30%, 90%);
+  display: grid;
+}
+
+.navbar > button {
+  width: 15%;
+}
+
+.content {
+  grid-column: 2 / -5;
+  padding: 200px 0;
+}
+
+.sidebar {
+  grid-column:  -4 / -1;
+}
+
+p {
+  font-size: 14px;
+}
+
+ul {
+  list-style: none;
+}
+
 .group {
   border: 2px solid black;
   border-radius: 3px;
   margin: 10px;
+  padding: 10px;
+  background: white;
+}
+
+.group-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
 }
