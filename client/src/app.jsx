@@ -4,6 +4,7 @@ import AddUser from './components/AddUser.jsx';
 import GroupList from './components/GroupList.jsx';
 import CreateGroups from './components/CreateGroups.jsx';
 import Groups from './components/Groups.jsx';
+import History from './components/History.jsx';
 
 // const axios = require('axios');
 
@@ -29,8 +30,11 @@ class Main extends React.Component {
   }
 
   handleOnCreate(newGroup) {
+    const updatedHistory = this.state.history.slice();
+    updatedHistory.push(newGroup);
     this.setState({
-      groups: newGroup
+      groups: newGroup,
+      history: updatedHistory
     });
   }
 
@@ -46,18 +50,21 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="navbar">
           <button onClick={this.handleOnLogin} type="submit">Log In</button>
           <h1>Group Generator 3000</h1>
-          <AddUser add={this.handleOnAdd} />
         </div>
         <div className="content">
+          <AddUser add={this.handleOnAdd} />
           <GroupList names={this.state.users} delete={this.handleOnRemove} />
           <br />
           <CreateGroups names={this.state.users} create={this.handleOnCreate} />
           <br />
           <Groups groups={this.state.groups} />
+        </div>
+        <div className="sidebar">
+          <History groups={this.state.history} />
         </div>
       </div>
     );

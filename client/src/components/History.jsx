@@ -1,0 +1,19 @@
+import React from 'react';
+import User from './User.jsx';
+
+export default class History extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="history">
+        <h4>Grouping History</h4>
+        {this.props.groups.map((group, index) => (
+          <User key={index} group={group} num={index} />
+        ))}
+      </div>
+    );
+  }
+}
