@@ -5,9 +5,8 @@ import GroupList from './components/GroupList.jsx';
 import CreateGroups from './components/CreateGroups.jsx';
 import Groups from './components/Groups.jsx';
 import History from './components/History.jsx';
-const axios = require('axios');
 
-// const axios = require('axios');
+const axios = require('axios');
 
 class Main extends React.Component {
   constructor(props) {
