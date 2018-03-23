@@ -30,8 +30,9 @@ const createGroups = (min, group) => {
       position++;
     }
   }
+  console.log(groupings);
 
-  if (leftover === min - 1) {
+  if (leftover === min - 1 && leftover !== 1) {
     const leftoverGroup = [];
     for (position; position < group.length; position++) {
       leftoverGroup.push(sortedGroup[position][0]);
