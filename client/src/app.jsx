@@ -5,6 +5,7 @@ import GroupList from './components/GroupList.jsx';
 import CreateGroups from './components/CreateGroups.jsx';
 import Groups from './components/Groups.jsx';
 import History from './components/History.jsx';
+const axios = require('axios');
 
 // const axios = require('axios');
 
@@ -22,11 +23,21 @@ class Main extends React.Component {
   }
 
   handleOnAdd(user) {
-    const newList = this.state.users.slice();
-    newList.push(user);
-    this.setState({
-      users: newList,
-    });
+    axios.post('/user', {
+      user
+    }).then(() => {
+      axios.get('/users')
+        .then((response) => {
+          console.log(response.data);
+          const newList = response.data.map((item) => {
+            return item.name;
+          });
+          this.setState({
+            users: newList
+          });
+        });
+    })
+    .catch(error => console.log(error));
   }
 
   handleOnCreate(newGroup) {
