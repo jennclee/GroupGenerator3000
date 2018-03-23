@@ -1,0 +1,43 @@
+{
+  "name": "groupgenerator3000",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -d --watch",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennclee/GroupGenerator3000.git"
+  },
+  "author": "Jennifer Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennclee/GroupGenerator3000/issues"
+  },
+  "homepage": "https://github.com/jennclee/GroupGenerator3000#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
+    "cors": "^2.8.4",
+    "eslint": "^4.19.1",
+    "path": "^0.12.7",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
