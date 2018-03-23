@@ -7,6 +7,9 @@ Random group generator app that allows a user to randomly generate groups, for t
 - View the arrangement of the groups
 - View a history of the groups generated
 
+## To Dos
+- Add login functionality for an admin user
+
 ## How to Start App
 To start app, open your terminal and run the following commands in order:
 - `npm install`
