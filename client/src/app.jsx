@@ -50,13 +50,21 @@ class Main extends React.Component {
   }
 
   handleOnRemove(user) {
-    const idx = this.state.users.indexOf(user);
-    const updatedList = this.state.users.slice();
-    updatedList.splice(idx, 1);
-    console.log(updatedList);
-    this.setState({
-      users: updatedList
-    });
+    axios.post('/delete', {
+      user
+    }).then(() => {
+      axios.get('/users')
+        .then((response) => {
+          console.log(response.data);
+          const newList = response.data.map((item) => {
+            return item.name;
+          });
+          this.setState({
+            users: newList
+          });
+        });
+    })
+      .catch(error => console.log(error));
   }
 
   render() {

@@ -36,3 +36,14 @@ app.post('/user', (req, res) => {
       console.log(err);
     });
 });
+
+app.post('/delete', (req, res) => {
+  const user = req.body.user;
+  console.log('Deleting user: ', user);
+  db.remove(user)
+    .then(() => res.status(200).send('Deleted user!'))
+    .catch((err) => {
+      res.status(500).send('Error deleting user');
+      console.log(err);
+    });
+})
