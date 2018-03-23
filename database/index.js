@@ -15,9 +15,9 @@ db.connect((err) => {
     db.query('USE groupGenerator', (err) => {
       if (err) console.log('Error using DB: ', err);
       db.query('DROP TABLE IF EXISTS users', (err) => {
-        if (err) console.log('Error dropping table');
+        if (err) console.log('Error dropping user table');
         db.query('CREATE TABLE IF NOT EXISTS users(id INTEGER AUTO_INCREMENT NOT NULL, name VARCHAR(30) NOT NULL,PRIMARY KEY(id))', (err) => {
-          if (err) console.log('Error creating table');
+          if (err) console.log('Error creating user table');
         });
       });
     });
