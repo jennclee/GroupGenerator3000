@@ -8,7 +8,7 @@ const db = mysql.createConnection({
 
 const userSQL = 'CREATE TABLE IF NOT EXISTS users(id INTEGER AUTO_INCREMENT NOT NULL, name VARCHAR(30) NOT NULL UNIQUE,PRIMARY KEY(id))';
 
-const groupSQL = 'CREATE TABLE IF NOT EXISTS groups(id INTEGER, user_id INTEGER, history_id INTEGER, PRIMARY KEY(id), FOREIGN KEY (user_id) REFERENCES users(id))';
+const groupSQL = 'CREATE TABLE IF NOT EXISTS groups(id INTEGER AUTO_INCREMENT NOT NULL, group_id INTEGER, user_id INTEGER, history_id INTEGER, PRIMARY KEY(id), FOREIGN KEY (user_id) REFERENCES users(id))';
 
 db.connect((err) => {
   if (err) console.log('Error connecting...', err);
@@ -60,10 +60,10 @@ module.exports = {
     });
   },
 
-  retrieveUser: (id) => {
-    const sql = 'SELECT * FROM users WHERE id = ?';
+  retrieveUserId: (name) => {
+    const sql = 'SELECT * FROM users WHERE name = ?';
     return new Promise((resolve, reject) => {
-      db.query(sql, `${id}`, (err, results) => {
+      db.query(sql, `${name}`, (err, results) => {
         if (err) {
           reject(err);
         } else {
@@ -87,7 +87,7 @@ module.exports = {
   },
 
   retrieveHistory: () => {
-    const sql = 'SELECT * FROM groups GROUP BY history_id';
+    const sql = 'SELECT g.group_id, g.history_id, u.name FROM groups g JOIN users u ON g.user_id = u.id ORDER BY history_id DESC, group_id DESC';
     return new Promise((resolve, reject) => {
       db.query(sql, (err, results) => {
         if (err) {
@@ -100,7 +100,7 @@ module.exports = {
   },
 
   addGroup: (users) => {
-    const sql = 'INSERT IGNORE INTO groups (id, user_id, history_id) VALUES ?';
+    const sql = 'INSERT INTO groups (group_id, user_id, history_id) VALUES (?)';
     return new Promise((resolve, reject) => {
       db.query(sql, [users], (err, results) => {
         if (err) {
