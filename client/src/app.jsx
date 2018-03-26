@@ -125,8 +125,8 @@ class Main extends React.Component {
     return (
       <div className="container">
         <div className="navbar">
-          <button onClick={this.handleOnLogin} type="submit">Log In</button>
           <h1>Group Generator 3000</h1>
+          <button onClick={this.handleOnLogin} type="submit">Log In</button>
         </div>
         <div className="content">
           <AddUser add={this.handleOnAdd} />
@@ -137,6 +137,7 @@ class Main extends React.Component {
           <Groups groups={this.state.groups} />
         </div>
         <div className="sidebar">
+          <h3>Grouping History</h3>
           <History groups={this.state.history} />
         </div>
       </div>
