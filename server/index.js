@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const cors = require('cors');
 const groupGenerator = require('../database');
 const path = require('path');
-const db = require('../database/index');
+const db = require('../database');
 const PORT = '8080';
 
 const app = express();
@@ -20,10 +20,37 @@ app.listen(PORT, () => {
 
 app.get('/users', (req, res) => {
   console.log('Getting users');
-  db.retrieve()
+  db.retrieveUsers()
     .then((response) => {
       res.status(200).send(response);
     });
+});
+
+app.get('/history', (req, res) => {
+  console.log('Getting history');
+  db.retrieveHistory()
+    .then((response) => {
+      const historyList = [];
+      res.status(200).send(response);
+    });
+});
+
+app.post('/history', (req, res) => {
+  const history = req.body.history;
+  const promises = [];
+  for (let i = 0; i < history.length; i++) {
+    promises.push(
+      db.retrieveUserId(history[i][1])
+      .then((response) => {
+        db.addGroup([history[i][0], response[0].id, history[i][2]]);
+      })
+      .catch((err) => {
+        res.status(500).send('Error saving history');
+        console.log(err);
+      })
+    );
+  }
+  Promise.all(promises).then(() => res.status(200).send('History saved'));
 });
 
 app.post('/user', (req, res) => {
@@ -46,4 +73,4 @@ app.post('/delete', (req, res) => {
       res.status(500).send('Error deleting user');
       console.log(err);
     });
-})
+});

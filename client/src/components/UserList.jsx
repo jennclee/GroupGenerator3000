@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class GroupList extends React.Component {
+export default class UserList extends React.Component {
   constructor(props) {
     super(props);
     this.handleOnDelete = this.handleOnDelete.bind(this);

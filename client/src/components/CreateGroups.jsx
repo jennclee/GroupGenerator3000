@@ -30,7 +30,6 @@ const createGroups = (min, group) => {
       position++;
     }
   }
-  console.log(groupings);
 
   if (leftover === min - 1 && leftover !== 1) {
     const leftoverGroup = [];
@@ -39,8 +38,11 @@ const createGroups = (min, group) => {
     }
     groupings.push(leftoverGroup);
   } else if (leftover !== 0) {
+    if (leftover === 1 && min === 2) {
+      position--;
+    }
     for (let k = 0; k < leftover; k++) {
-      groupings[k].push(sortedGroup[position - 1][0]);
+      groupings[k].push(sortedGroup[position][0]);
       position++;
     }
   }
@@ -53,8 +55,7 @@ export default class CreateGroups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      minimum: 3,
-      groups: []
+      minimum: 3
     };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -68,7 +69,9 @@ export default class CreateGroups extends React.Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.create(createGroups(this.state.minimum, this.props.names));
+    const groupings = createGroups(this.state.minimum, this.props.names);
+    this.props.create(groupings);
+    this.props.hist(groupings);
     document.getElementById('groupForm').reset();
   }
 
