@@ -6,10 +6,10 @@ Random group generator app that allows a user to randomly generate groups, for t
 - Creates randomly generated groups
 - View the arrangement of the groups
 - View a history of the groups generated
+- Maintain users and grouping history in database
 
 ## To Dos
 - Add login functionality for an admin user
-- Maintain grouping history in database
 
 ## How to Start App
 To start app, open your terminal and run the following commands in order:
