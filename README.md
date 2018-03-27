@@ -10,7 +10,6 @@ Random group generator app that allows a user to randomly generate groups, for t
 
 ## To Dos
 - Add login functionality for an admin user
-- Maintain grouping history in database
 
 ## How to Start App
 To start app, open your terminal and run the following commands in order:
